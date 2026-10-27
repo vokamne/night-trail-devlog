@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Game — Night Trail</title>
+  <meta name="description" content="Night Trail: overview, core mechanic, aesthetic, story, features, technology, methodology and ethics.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Night Trail</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="game.html" aria-current="page">The Game</a></li>
+          <li><a href="devlog.html">Devlog</a></li>
+          <li><a href="design.html">Design</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">The Game</p>
+      <h1>Night Trail</h1>
+      <p class="lead">A 2D top-down adventure in Godot 4. Cozy days and tense nights give the game its rhythm, and light is the thing that keeps you going.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="source/Night_Trail_Pitch.pdf" download>Download the pitch (PDF)</a>
+      </div>
+    </header>
+
+    <!-- Overview -->
+    <section class="section">
+      <h2>Overview</h2>
+      <div class="grid grid-2">
+        <div>
+          <p>A lone hiker sets out on a multi-day trek to a high mountain pass. Days are warm and cozy: explore autumn trails, gather supplies and meet other hikers at campsites. When the sun sets, the world falls into darkness, and the only safety is the light you carry.</p>
+          <p><strong>Aim:</strong> make a 2D top-down adventure where the contrast between cozy days and tense nights creates its own emotional rhythm.</p>
+        </div>
+        <div class="card">
+          <h3>Objectives</h3>
+          <ol>
+            <li>A light-as-resource system (headlamp, torches, campfires) using Godot 2D lighting</li>
+            <li>A day/night cycle that changes visuals, audio and gameplay</li>
+            <li>3 hand-crafted trail sections: forest, ridge, pass</li>
+            <li>A playable vertical slice of 20–30 minutes</li>
+            <li>Playtests with at least 5 players, and changes based on their feedback</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core mechanic -->
+    <section class="section">
+      <h2>Main mechanic: light as a resource</h2>
+      <p>Every day follows the same loop. You repeat it until you reach the pass.</p>
+      <div class="loop" role="list">
+        <div class="step" role="listitem"><strong>Explore</strong><span>trails and campsites</span></div>
+        <div class="step" role="listitem"><strong>Gather</strong><span>wood, batteries, food</span></div>
+        <div class="step" role="listitem"><strong>Sunset</strong><span>reach camp in time?</span></div>
+        <div class="step night" role="listitem"><strong>Survive night</strong><span>light keeps you safe</span></div>
+        <div class="step" role="listitem"><strong>Dawn</strong><span>progress and reward</span></div>
+      </div>
+      <p class="loop-note">Repeat each day until you reach the pass</p>
+
+      <div class="grid grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>Day = preparation</h3>
+          <p>Collect firewood, batteries and food. Plan the route to the next campsite before sunset.</p>
+        </div>
+        <div class="card">
+          <h3>Night = spending</h3>
+          <p>The headlamp drains, torches burn out, campfires need fuel. Darkness hides cliffs and wildlife.</p>
+        </div>
+        <div class="card">
+          <h3>The core decision</h3>
+          <p>Push on in the dark to gain ground, or make camp and burn your supplies to stay safe?</p>
+        </div>
+      </div>
+      <p style="margin-top:20px"><strong>Soft failure:</strong> if you lose your light, you wake up at the last campsite with fewer items. You never lose your progress.</p>
+    </section>
+
+    <!-- Aesthetic -->
+    <section class="section">
+      <h2>Aesthetic: day &amp; night</h2>
+      <p>Top-down pixel art with 16×16 / 32×32 tiles. The same forest feels cozy by day and tense by night. The lighting does the storytelling.</p>
+      <div class="day-night">
+        <figure class="figure">
+          <a class="zoom" href="media/game/day-concept.jpg" data-caption="Day concept. AI-generated concept art.">
+            <img src="media/game/day-concept.jpg" width="1600" height="900" loading="lazy" alt="Autumn campsite by a mountain trail in daylight">
+          </a>
+          <figcaption><span class="ai-label">AI-generated concept art</span>Day</figcaption>
+          <div class="palette" aria-label="Day palette">
+            <div class="swatch"><i style="background:#E3812B"></i>#E3812B</div>
+            <div class="swatch"><i style="background:#C2402A"></i>#C2402A</div>
+            <div class="swatch"><i style="background:#F2B840"></i>#F2B840</div>
+            <div class="swatch"><i style="background:#3E5B33"></i>#3E5B33</div>
+            <div class="swatch"><i style="background:#A57D52"></i>#A57D52</div>
+          </div>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="media/game/night-concept.jpg" data-caption="Night concept. AI-generated concept art.">
+            <img src="media/game/night-concept.jpg" width="1600" height="900" loading="lazy" alt="The same campsite at night, lit by a campfire">
+          </a>
+          <figcaption><span class="ai-label">AI-generated concept art</span>Night</figcaption>
+          <div class="palette" aria-label="Night palette">
+            <div class="swatch"><i style="background:#0F1A24"></i>#0F1A24</div>
+            <div class="swatch"><i style="background:#18263A"></i>#18263A</div>
+            <div class="swatch"><i style="background:#2B3F5C"></i>#2B3F5C</div>
+            <div class="swatch"><i style="background:#F2A33A"></i>#F2A33A</div>
+            <div class="swatch"><i style="background:#D9622B"></i>#D9622B</div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:28px">
+        <div class="card">
+          <h3>Visual assets</h3>
+          <ul>
+            <li>Top-down forest and mountain tilesets</li>
+            <li>Hiker sprite with a 4–8 direction walk cycle</li>
+            <li>Soft radial light textures for the lights</li>
+            <li>Edits in Aseprite / LibreSprite</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Audio</h3>
+          <ul>
+            <li>Day: birdsong, wind, footsteps on leaves</li>
+            <li>Night: crickets, distant animals, crackling fire</li>
+            <li>Sounds from Freesound (CC0 / CC-BY), credited in the game</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:16px">The AI images are only for the pitch and this blog. All assets in the final game will be properly licensed.</p>
+    </section>
+
+    <!-- Story -->
+    <section class="section">
+      <h2>Story</h2>
+      <p>The hiker returns to a mountain trail they once walked with someone close to them, to finish the route they never completed together. The story is told through notes left at campsites, talks with other hikers and the environment itself. It is light and optional: it rewards players who explore, but never blocks play.</p>
+      <div class="grid grid-3 acts">
+        <div class="card act">
+          <span class="num">Act 1</span>
+          <h3>The Forest</h3>
+          <p>Familiar autumn woods. Notes from an old trip hint at someone who walked here before.</p>
+        </div>
+        <div class="card act">
+          <span class="num">Act 2</span>
+          <h3>The Ridge</h3>
+          <p>Exposed, colder, longer nights. Other hikers share pieces of the story around the fire.</p>
+        </div>
+        <div class="card act">
+          <span class="num">Act 3</span>
+          <h3>The Pass</h3>
+          <p>The hardest night. Reaching the top completes the route they never finished together.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section">
+      <h2>Features</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Core gameplay</h3>
+          <ul>
+            <li><strong>Player movement</strong> – top-down walking, stamina</li>
+            <li><strong>Light resource</strong> – headlamp, torches, fire fuel</li>
+            <li><strong>Gathering &amp; inventory</strong> – wood, batteries, food</li>
+            <li><strong>Hazards</strong> – cliffs, cold, lost paths</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>World &amp; atmosphere</h3>
+          <ul>
+            <li><strong>Day/night cycle</strong> – drives visuals and gameplay</li>
+            <li><strong>Dynamic 2D lighting</strong> – lights, shadows, night tint</li>
+            <li><strong>3 trail sections</strong> – forest, ridge, pass</li>
+            <li><strong>Wildlife &amp; NPC hikers</strong> – AI behaviour, dialogue</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Systems &amp; UI</h3>
+          <ul>
+            <li><strong>Campsites</strong> – save points and rest</li>
+            <li><strong>HUD</strong> – light, warmth, time of day</li>
+            <li><strong>Menus &amp; settings</strong> – brightness, key rebinding</li>
+            <li><strong>Audio &amp; weather</strong> – ambient loops, rain, fog</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>MoSCoW priorities</h3>
+      <div class="grid grid-4 moscow">
+        <div class="card must">
+          <h3>Must have</h3>
+          <ul>
+            <li>Player movement</li>
+            <li>Day/night cycle</li>
+            <li>2D lighting &amp; shadows</li>
+            <li>Light resource system</li>
+            <li>Gathering &amp; inventory</li>
+            <li>Campsites (save points)</li>
+            <li>3 trail sections</li>
+            <li>HUD</li>
+            <li>Main menu &amp; pause</li>
+          </ul>
+        </div>
+        <div class="card should">
+          <h3>Should have</h3>
+          <ul>
+            <li>Wildlife AI (state machine)</li>
+            <li>NPC hikers &amp; dialogue</li>
+            <li>Ambient day/night audio</li>
+            <li>Narrative notes</li>
+            <li>Warmth / cold system</li>
+          </ul>
+        </div>
+        <div class="card could">
+          <h3>Could have</h3>
+          <ul>
+            <li>Weather: rain, fog, snow</li>
+            <li>Procedural trail generation</li>
+            <li>Crafting torches</li>
+            <li>Photo mode</li>
+            <li>Controller support</li>
+          </ul>
+        </div>
+        <div class="card wont">
+          <h3>Won't have (this version)</h3>
+          <ul>
+            <li>Multiplayer</li>
+            <li>3D graphics</li>
+            <li>Online leaderboards</li>
+            <li>Mobile port</li>
+            <li>In-game purchases</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology -->
+    <section class="section">
+      <h2>Technology</h2>
+      <div class="grid grid-2">
+        <div>
+          <p><strong>Engine: Godot 4.</strong> It is open source (MIT, no royalties), has built-in 2D lighting, and saves scenes as text files, which works well with version control.</p>
+          <p><strong>View: 2D, 3/4 top-down.</strong> Not 3D. Objects are sorted by height on screen, so the player can walk behind trees.</p>
+          <dl class="tech">
+            <dt>Lighting</dt><dd>2D point lights, light occluders, a colour tint for the whole world</dd>
+            <dt>World</dt><dd>Tile maps, Y-sorting for depth</dd>
+            <dt>AI</dt><dd>Finite-state machines, navigation agents</dd>
+            <dt>Effects</dt><dd>GPU particles (fire, rain), fog shaders</dd>
+            <dt>Tools</dt><dd>GDScript, Git/GitHub, Aseprite, Claude Code</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>Games that inspired it</h3>
+          <ul class="link-list">
+            <li><strong>Don't Starve</strong> (Klei, 2013)<span class="desc">Darkness is lethal; fire is the only safety.</span></li>
+            <li><strong>The Long Dark</strong> (Hinterland, 2017)<span class="desc">Survival through cold, fire and light management.</span></li>
+            <li><strong>A Short Hike</strong> (adamgibbs, 2019)<span class="desc">Cozy mountain exploration toward a peak.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="section">
+      <h2>Methodology: Agile, Scrum of One</h2>
+      <p>I work in six 2-week sprints. Each sprint goes: product backlog → sprint planning → 2-week sprint → playable build → review &amp; playtest → retrospective. Feedback goes back into the backlog.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>How I use it</h3>
+          <ul>
+            <li>The backlog is built from the MoSCoW list</li>
+            <li>Every sprint ends with a playable build</li>
+            <li>Short playtests tune how light and darkness feel, early on</li>
+            <li>A sprint board on GitHub Projects / Trello</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Why not Waterfall</h3>
+          <p>You can only judge game feel by playing. Requirements will change after each playtest, so a fixed plan up front would not hold.</p>
+          <p style="margin:0"><a href="roadmap.html">See the sprint roadmap →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ethics -->
+    <section class="section">
+      <h2>Ethics, legal &amp; PEGI</h2>
+      <div class="card pegi" style="margin-bottom:16px">
+        <div class="pegi-badge" aria-label="PEGI 7"><b>7</b><small>PEGI</small></div>
+        <p style="margin:0"><strong>Expected rating: PEGI 7.</strong> Some mildly frightening scenes and sounds at night. No violence, gore, gambling or in-game purchases.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Copyright</h3>
+          <p>Only assets with clear licences (CC0, CC-BY or purchased), with a full credits screen. AI images are used for pitch concepts only.</p>
+        </div>
+        <div class="card">
+          <h3>Ethical</h3>
+          <p>No loot boxes or manipulative design. Soft failure. Accessibility: brightness setting, colour-blind-safe UI, key rebinding.</p>
+        </div>
+        <div class="card">
+          <h3>Social</h3>
+          <p>Encourages interest in nature and responsible hiking ("leave no trace" notes). The game is offline, so there is no chat to moderate.</p>
+        </div>
+        <div class="card">
+          <h3>Data security</h3>
+          <p>Local save files only: no accounts, analytics or personal data, so UK GDPR risk is minimal. Playtest feedback is anonymised.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="actions" style="margin-top:48px">
+      <a class="btn btn-primary" href="source/Night_Trail_Pitch.pdf" download>Download the pitch (PDF)</a>
+      <a class="btn btn-ghost" href="devlog.html">Read the devlog</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Night Trail devlog · Volodymyr Cherepovskyi · Kingston University 2026</span>
+      <a href="https://github.com/vokamne">GitHub</a>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

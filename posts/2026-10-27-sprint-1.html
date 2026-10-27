@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprint 1 – Lighting prototype — Night Trail</title>
+  <meta name="description" content="Sprint 1 review: darkness, headlamp, campfire safe zone and 2D shadows in Godot 4.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span>Night Trail</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../game.html">The Game</a></li>
+          <li><a href="../devlog.html" aria-current="page">Devlog</a></li>
+          <li><a href="../design.html">Design</a></li>
+          <li><a href="../roadmap.html">Roadmap</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Source text: content/posts/2026-10-27-sprint-1.md -->
+  <main id="main" class="narrow post">
+    <header class="post-head">
+      <a class="back" href="../devlog.html">← All posts</a>
+      <h1>Sprint 1 – Lighting prototype</h1>
+      <div class="meta"><span class="tag tag-sprint">Sprint review</span><time datetime="2026-10-27">27 Oct 2026</time></div>
+      <p class="goal"><strong>Goal:</strong> check that darkness, lights and shadows work in 2D.</p>
+    </header>
+
+    <section>
+      <h2>What I did</h2>
+      <ul class="checklist">
+        <li>Set up the project (Godot 4.7.2, GitHub)</li>
+        <li>Player movement</li>
+        <li>Day/night cycle</li>
+        <li>Headlamp with battery</li>
+        <li>Campfire with a safe zone</li>
+        <li>Shadows from trees and rocks</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Problems &amp; solutions</h2>
+
+      <article class="card problem">
+        <h3>Night was too dark</h3>
+        <p><span class="label label-p">Problem</span><br>You couldn't see anything without light.</p>
+        <p><span class="label label-s">Solution</span><br>I made the night lighter and bluer, so trees still show as silhouettes.</p>
+        <div class="compare">
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-1/night-too-dark.png" data-caption="Before: the night is almost black.">
+              <img src="../media/sprint-1/night-too-dark.png" width="630" height="351" loading="lazy" alt="Before: an almost completely black night scene">
+            </a>
+            <figcaption><span class="state before">Before</span>Almost black</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-1/night-fixed.png" data-caption="After: lighter, bluer night with tree silhouettes.">
+              <img src="../media/sprint-1/night-fixed.png" width="1285" height="794" loading="lazy" alt="After: a lighter blue night where tree silhouettes are visible">
+            </a>
+            <figcaption><span class="state after">After</span>Trees show as silhouettes</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="card problem">
+        <h3>The headlamp looked green</h3>
+        <p><span class="label label-p">Problem</span><br>Light multiplies with the surface colour, and the grass was too green.</p>
+        <p><span class="label label-s">Solution</span><br>I made the light warmer and the grass less saturated.</p>
+        <div class="compare">
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-1/beam-green.png" data-caption="Before: the headlamp beam looks green.">
+              <img src="../media/sprint-1/beam-green.png" width="1285" height="794" loading="lazy" alt="Before: headlamp beam with a green tint">
+            </a>
+            <figcaption><span class="state before">Before</span>Green beam</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-1/beam-warm.png" data-caption="After: a warmer headlamp beam.">
+              <img src="../media/sprint-1/beam-warm.png" width="1286" height="786" loading="lazy" alt="After: warmer headlamp beam">
+            </a>
+            <figcaption><span class="state after">After</span>Warmer light</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="card problem">
+        <h3>Hard line at the base of the light beam</h3>
+        <p><span class="label label-p">Problem</span><br>The built-in gradient couldn't fade in near the player, so the beam started with a sharp edge.</p>
+        <p><span class="label label-s">Solution</span><br>The beam texture is now generated in code with a soft start.</p>
+      </article>
+
+      <article class="card problem">
+        <h3>The headlamp was too bright in the daytime</h3>
+        <p><span class="label label-p">Problem</span><br>The headlamp was just as strong in full daylight.</p>
+        <p><span class="label label-s">Solution</span><br>Lights now get brighter only when it gets dark.</p>
+      </article>
+
+      <article class="card problem">
+        <h3>Tree tops were getting shadows from trunks</h3>
+        <p><span class="label label-p">Problem</span><br>Shadows from the trunks fell on the tree tops above them.</p>
+        <p><span class="label label-s">Solution</span><br>I put the tree tops on a separate light layer that doesn't get shadows.</p>
+      </article>
+
+      <article class="card problem">
+        <h3>Tree shadows looked like thin spikes</h3>
+        <p><span class="label label-p">Problem</span><br>Shadows from the trees were long and thin.</p>
+        <p><span class="label label-s">Solution</span><br>I made the shadow shape wider and the shadows softer.</p>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-1/shadows-campfire.png" data-caption="Soft, wider tree shadows around the campfire.">
+            <img src="../media/sprint-1/shadows-campfire.png" width="1267" height="704" loading="lazy" alt="Campfire at night with soft, wide shadows from trees">
+          </a>
+          <figcaption>Softer, wider shadows around the campfire</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section>
+      <h2>Media</h2>
+      <figure class="figure">
+        <video controls preload="metadata" playsinline poster="../media/sprint-1/shadows-campfire.png" width="1280" height="720">
+          <source src="../media/sprint-1/demo.mp4" type="video/mp4">
+          Your browser can't play this video. <a href="../media/sprint-1/demo.mp4">Download demo.mp4</a>.
+        </video>
+        <figcaption>Prototype demo: day → sunset → night, headlamp, shadows, campfire.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Useful links</h2>
+      <ul class="link-list">
+        <li>
+          <a href="https://docs.godotengine.org/en/stable/tutorials/2d/2d_lights_and_shadows.html">Godot docs – 2D lights and shadows</a>
+          <span class="desc">How 2D lights, shadows and occluders work.</span>
+        </li>
+        <li>
+          <a href="https://gameprogrammingpatterns.com/state.html">Game Programming Patterns – State</a>
+          <span class="desc">The state machine pattern I use for the player.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <p>Sprint 2 is about light as a resource:</p>
+      <ul>
+        <li>Cold in the dark</li>
+        <li>Firewood for the campfire</li>
+        <li>Torches</li>
+        <li>Battery pickups</li>
+        <li>Waking up at camp if the light runs out</li>
+      </ul>
+      <p><a href="../roadmap.html">See the roadmap →</a></p>
+    </section>
+
+    <nav class="post-nav" aria-label="Posts">
+      <span class="muted">This is the first post</span>
+      <a href="../devlog.html">All posts →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Night Trail devlog · Volodymyr Cherepovskyi · Kingston University 2026</span>
+      <a href="https://github.com/vokamne">GitHub</a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

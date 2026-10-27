@@ -1,0 +1,142 @@
+<!doctype html>
+<!--
+  POST TEMPLATE. Copy to posts/YYYY-MM-DD-name.html and replace everything in {{ }}.
+  Delete blocks you don't need (e.g. compare pairs, video, YouTube).
+  Paths are relative to /posts/, so media links start with ../media/
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{Title}} — Night Trail</title>
+  <meta name="description" content="{{One-sentence summary}}">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span>Night Trail</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../game.html">The Game</a></li>
+          <li><a href="../devlog.html" aria-current="page">Devlog</a></li>
+          <li><a href="../design.html">Design</a></li>
+          <li><a href="../roadmap.html">Roadmap</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Source text: content/posts/{{YYYY-MM-DD-name}}.md -->
+  <main id="main" class="narrow post">
+    <header class="post-head">
+      <a class="back" href="../devlog.html">← All posts</a>
+      <h1>{{Title}}</h1>
+      <!-- Sprint review: tag-sprint / "Sprint review". Weekly update: tag-weekly / "Weekly update" -->
+      <div class="meta"><span class="tag tag-sprint">Sprint review</span><time datetime="{{YYYY-MM-DD}}">{{D Mon YYYY}}</time></div>
+      <p class="goal"><strong>Goal:</strong> {{Sprint or week goal}}</p>
+    </header>
+
+    <section>
+      <h2>What I did</h2>
+      <ul class="checklist">
+        <li>{{Item}}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Problems &amp; solutions</h2>
+
+      <!-- One card per problem -->
+      <article class="card problem">
+        <h3>{{Short problem title}}</h3>
+        <p><span class="label label-p">Problem</span><br>{{What went wrong}}</p>
+        <p><span class="label label-s">Solution</span><br>{{How I fixed it}}</p>
+
+        <!-- Optional: before / after pair -->
+        <div class="compare">
+          <figure class="figure">
+            <a class="zoom" href="../media/{{sprint-N}}/{{before}}.png" data-caption="Before: {{caption}}">
+              <img src="../media/{{sprint-N}}/{{before}}.png" width="{{w}}" height="{{h}}" loading="lazy" alt="Before: {{description}}">
+            </a>
+            <figcaption><span class="state before">Before</span>{{caption}}</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/{{sprint-N}}/{{after}}.png" data-caption="After: {{caption}}">
+              <img src="../media/{{sprint-N}}/{{after}}.png" width="{{w}}" height="{{h}}" loading="lazy" alt="After: {{description}}">
+            </a>
+            <figcaption><span class="state after">After</span>{{caption}}</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Media</h2>
+
+      <!-- Image or GIF -->
+      <figure class="figure">
+        <a class="zoom" href="../media/{{sprint-N}}/{{file}}" data-caption="{{caption}}">
+          <img src="../media/{{sprint-N}}/{{file}}" width="{{w}}" height="{{h}}" loading="lazy" alt="{{description}}">
+        </a>
+        <figcaption>{{caption}}</figcaption>
+      </figure>
+
+      <!-- Local video (only if under 25 MB) -->
+      <figure class="figure">
+        <video controls preload="metadata" playsinline poster="../media/{{sprint-N}}/{{poster}}.png">
+          <source src="../media/{{sprint-N}}/{{video}}.mp4" type="video/mp4">
+        </video>
+        <figcaption>{{caption}}</figcaption>
+      </figure>
+
+      <!-- YouTube (unlisted) -->
+      <figure class="figure">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/{{VIDEO_ID}}" title="{{Video title}}" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+        </div>
+        <figcaption>{{caption}}</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Useful links</h2>
+      <ul class="link-list">
+        <li>
+          <a href="{{url}}">{{Link title}}</a>
+          <span class="desc">{{Why it helped}}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <ul>
+        <li>{{Next task}}</li>
+      </ul>
+    </section>
+
+    <nav class="post-nav" aria-label="Posts">
+      <a href="{{previous-post}}.html">← {{Previous post title}}</a>
+      <a href="../devlog.html">All posts →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Night Trail devlog · Volodymyr Cherepovskyi · Kingston University 2026</span>
+      <a href="https://github.com/vokamne">GitHub</a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

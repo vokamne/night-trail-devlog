@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Night Trail — Devlog</title>
+  <meta name="description" content="Progress blog for Night Trail, a top-down mountain adventure where light is your lifeline. Made in Godot 4.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Night Trail</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="game.html">The Game</a></li>
+          <li><a href="devlog.html">Devlog</a></li>
+          <li><a href="design.html">Design</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap">
+      <p class="eyebrow">Game development blog</p>
+      <h1>Night Trail</h1>
+      <p class="tagline">A top-down mountain adventure where light is your lifeline</p>
+
+      <div class="day-night">
+        <figure class="figure">
+          <a class="zoom" href="media/game/day-concept.jpg" data-caption="Day: warm autumn trail and campsite. AI-generated concept art.">
+            <img src="media/game/day-concept.jpg" width="1600" height="900" alt="Pixel-art autumn campsite next to a mountain trail in the daytime">
+          </a>
+          <figcaption><span class="ai-label">AI-generated concept art</span>Day: explore and gather</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="media/game/night-concept.jpg" data-caption="Night: the same forest, lit only by fire. AI-generated concept art.">
+            <img src="media/game/night-concept.jpg" width="1600" height="900" alt="The same mountain forest camp at night, lit by a campfire">
+          </a>
+          <figcaption><span class="ai-label">AI-generated concept art</span>Night: survive by your light</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="narrow section">
+      <p class="lead">A lone hiker sets out on a multi-day trek to a high mountain pass. Days are warm and cozy: you explore autumn trails, gather supplies and meet other hikers at campsites.</p>
+      <p>When the sun sets, the world goes dark, and the only safety is the light you carry. Night Trail is my final-year project at Kingston University, made in Godot 4. On this blog I write about how it is going, sprint by sprint.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="game.html">About the game</a>
+        <a class="btn btn-ghost" href="devlog.html">All devlog posts</a>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <p class="eyebrow">Latest post</p>
+      <a class="post-card" href="posts/2026-10-27-sprint-1.html">
+        <img src="media/sprint-1/shadows-campfire.png" width="1267" height="704" loading="lazy" alt="Prototype screenshot: hiker next to a campfire at night, trees casting soft shadows">
+        <div>
+          <div class="meta"><span class="tag tag-sprint">Sprint review</span><time datetime="2026-10-27">27 Oct 2026</time></div>
+          <h3>Sprint 1 – Lighting prototype</h3>
+          <p>Darkness, a headlamp with a battery, a campfire safe zone and shadows from trees. What worked, what looked wrong, and how I fixed it.</p>
+          <span class="more">Read the post →</span>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Night Trail devlog · Volodymyr Cherepovskyi · Kingston University 2026</span>
+      <a href="https://github.com/vokamne">GitHub</a>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

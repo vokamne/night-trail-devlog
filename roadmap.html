@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap — Night Trail</title>
+  <meta name="description" content="Six 2-week sprints for Night Trail and their status.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Night Trail</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="game.html">The Game</a></li>
+          <li><a href="devlog.html">Devlog</a></li>
+          <li><a href="design.html">Design</a></li>
+          <li><a href="roadmap.html" aria-current="page">Roadmap</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="narrow">
+    <header class="page-head">
+      <p class="eyebrow">Roadmap</p>
+      <h1>Six sprints to the pass</h1>
+      <p class="lead">Six sprints, two weeks each. Every sprint ends with a playable build and a review post.</p>
+    </header>
+
+    <!--
+      Status classes: done / progress / planned (+ "next" for the upcoming sprint).
+      Labels: Done / In progress / Planned.
+    -->
+    <ol class="timeline">
+      <li class="done">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="card">
+          <div class="meta"><span>Sprint 1 · Weeks 1–2</span><span class="status status-done">Done</span></div>
+          <h3>Setup &amp; lighting prototype</h3>
+          <ul>
+            <li>Project setup, player movement</li>
+            <li>Day/night cycle, headlamp with battery, campfire safe zone</li>
+            <li>Shadows from trees and rocks</li>
+          </ul>
+          <p style="margin:.6em 0 0"><a href="posts/2026-10-27-sprint-1.html">Read the Sprint 1 review →</a></p>
+        </div>
+      </li>
+      <li class="planned next">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="card">
+          <div class="meta"><span>Sprint 2 · Weeks 3–4</span><span class="status status-planned">Planned</span><span class="status-next">Next up</span></div>
+          <h3>Light as a resource</h3>
+          <ul>
+            <li>Cold in the dark</li>
+            <li>Firewood for the campfire, torches, battery pickups</li>
+            <li>Soft failure: wake up at camp if the light runs out</li>
+          </ul>
+        </div>
+      </li>
+      <li class="planned">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="card">
+          <div class="meta"><span>Sprint 3 · Weeks 5–6</span><span class="status status-planned">Planned</span></div>
+          <h3>Resources &amp; campsites</h3>
+        </div>
+      </li>
+      <li class="planned">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="card">
+          <div class="meta"><span>Sprint 4 · Weeks 7–8</span><span class="status status-planned">Planned</span></div>
+          <h3>Trail sections 1–2, hazards, wildlife AI</h3>
+        </div>
+      </li>
+      <li class="planned">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="card">
+          <div class="meta"><span>Sprint 5 · Weeks 9–10</span><span class="status status-planned">Planned</span></div>
+          <h3>Trail section 3, NPC hikers, audio</h3>
+        </div>
+      </li>
+      <li class="planned">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="card">
+          <div class="meta"><span>Sprint 6 · Weeks 11–12</span><span class="status status-planned">Planned</span></div>
+          <h3>Playtesting &amp; polish</h3>
+        </div>
+      </li>
+    </ol>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Night Trail devlog · Volodymyr Cherepovskyi · Kingston University 2026</span>
+      <a href="https://github.com/vokamne">GitHub</a>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
