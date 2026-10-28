@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprint 3 – Campsites, saving and menus — Night Trail</title>
+  <meta name="description" content="Sprint 3 review: solid campfire, firewood regrowth, apples, resting, saving, main menu, pause and settings.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span>Night Trail</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../game.html">The Game</a></li>
+          <li><a href="../devlog.html" aria-current="page">Devlog</a></li>
+          <li><a href="../design.html">Design</a></li>
+          <li><a href="../roadmap.html">Roadmap</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Source text: content/posts/2026-10-28-sprint-3.md -->
+  <main id="main" class="narrow post">
+    <header class="post-head">
+      <a class="back" href="../devlog.html">← All posts</a>
+      <h1>Sprint 3 – Campsites, saving and menus</h1>
+      <div class="meta"><span class="tag tag-sprint">Sprint review</span><time datetime="2026-10-28">28 Oct 2026</time></div>
+      <p class="goal"><strong>Goal:</strong> make it feel like a real game – progress is saved, there are menus, and the world goes on day after day.</p>
+    </header>
+
+    <section>
+      <h2>What I did</h2>
+      <ul class="checklist">
+        <li>The campfire is solid – you can't walk into the fire</li>
+        <li>Firewood grows back every morning (each pile with a 70% chance)</li>
+        <li>Apples: eat with C for warmth, or cook them at the fire for more</li>
+        <li>Campfire menu (E): add firewood, cook, rest</li>
+        <li>Rest 2 hours at a burning campfire – the fire keeps burning while you rest</li>
+        <li>Saving: autosave at campfires and at dawn, Continue from the main menu</li>
+        <li>Main menu, pause menu (Esc) and settings: brightness, volume, fullscreen, controls</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Problems &amp; solutions</h2>
+
+      <article class="card problem">
+        <h3>You could stand on the campfire stones</h3>
+        <p><span class="label label-p">Problem</span><br>The collision was a small circle in the middle.</p>
+        <p><span class="label label-s">Solution</span><br>Now it matches the ring of stones.</p>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-3/campfire-collision.gif" data-caption="The player walks around the campfire and can't step into it.">
+            <img src="../media/sprint-3/campfire-collision.gif" width="1274" height="700" loading="lazy" alt="Animation: the player walks around the campfire and stops at the ring of stones">
+          </a>
+          <figcaption>The player stops at the stones now</figcaption>
+        </figure>
+      </article>
+
+      <article class="card problem">
+        <h3>Firewood disappeared forever</h3>
+        <p><span class="label label-p">Problem</span><br>After 2–3 nights the map was empty.</p>
+        <p><span class="label label-s">Solution</span><br>Now picked-up items are hidden and come back at dawn.</p>
+      </article>
+
+      <article class="card problem">
+        <h3>The game overwrote your save at the start</h3>
+        <p><span class="label label-p">Problem</span><br>The player starts next to a campfire, which counted as a visit and autosaved.</p>
+        <p><span class="label label-s">Solution</span><br>Now autosave waits until you load or start a new game.</p>
+        <figure class="figure figure-small">
+          <a class="zoom" href="../media/sprint-3/game-saving-added.png" data-caption="The autosave message.">
+            <img src="../media/sprint-3/game-saving-added.png" width="197" height="96" loading="lazy" alt="Small yellow text in the corner of the screen: Game saved">
+          </a>
+          <figcaption>The autosave message</figcaption>
+        </figure>
+      </article>
+
+      <article class="card problem">
+        <h3>Resting could surprise you</h3>
+        <p><span class="label label-p">Problem</span><br>You didn't know if the fire would last.</p>
+        <p><span class="label label-s">Solution</span><br>Now the menu warns "fire may go out" in red.</p>
+        <p class="muted">Before the warning: resting twice in a row until the fire went out.</p>
+        <div class="sequence sequence-wide">
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-3/rest-1.png" data-caption="1. The campfire menu: Rest 2 h, fuel 97%.">
+              <img src="../media/sprint-3/rest-1.png" width="1269" height="705" loading="lazy" alt="Campfire menu at night with options Add firewood, Cook an apple, Rest 2 h">
+            </a>
+            <figcaption>Rest, fuel 97%</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-3/rest-2.png" data-caption="2. After 2 hours the fire is at 55%.">
+              <img src="../media/sprint-3/rest-2.png" width="1278" height="716" loading="lazy" alt="Message: You rested for 2 hours. Campfire fuel 55%">
+            </a>
+            <figcaption>Fuel 55%</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-3/rest-3.png" data-caption="3. Rested again: the fire is almost out, fuel 9%.">
+              <img src="../media/sprint-3/rest-3.png" width="1270" height="709" loading="lazy" alt="Message: You rested for 2 hours. The fire is small, fuel 9%">
+            </a>
+            <figcaption>Fuel 9%</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-3/rest-4.png" data-caption="4. The fire went out. You wake up freezing.">
+              <img src="../media/sprint-3/rest-4.png" width="1281" height="716" loading="lazy" alt="Message: The fire went out. You wake up freezing">
+            </a>
+            <figcaption>Wake up freezing</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="card problem">
+        <h3>The main menu looked like a cloudy day</h3>
+        <p><span class="label label-p">Problem</span><br>The campfire light was too big and too strong on the green ground.</p>
+        <p><span class="label label-s">Solution</span><br>I made it a deep blue night with the campfire as the only warm light.</p>
+        <div class="compare">
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-3/menu-added.png" data-caption="Before: the main menu looks like a cloudy day.">
+              <img src="../media/sprint-3/menu-added.png" width="1271" height="714" loading="lazy" alt="Before: main menu with a grey-green background and a weak campfire glow">
+            </a>
+            <figcaption><span class="state before">Before</span>Cloudy day</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-3/menu-edited.png" data-caption="After: a deep blue night, the campfire is the only warm light.">
+              <img src="../media/sprint-3/menu-edited.png" width="1269" height="716" loading="lazy" alt="After: main menu on a deep blue night with a small warm campfire">
+            </a>
+            <figcaption><span class="state after">After</span>Deep blue night</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="card problem">
+        <h3>Torch and baked apple counters looked the same</h3>
+        <p><span class="label label-p">Problem</span><br>Both counters were the same orange colour.</p>
+        <p><span class="label label-s">Solution</span><br>Every item now has its own colour and letter.</p>
+        <figure class="figure figure-small">
+          <a class="zoom" href="../media/sprint-3/collectibles-better.png" data-caption="Item counters: F, B, T, A, H, each with its own colour.">
+            <img src="../media/sprint-3/collectibles-better.png" width="398" height="157" loading="lazy" alt="HUD item counters with letters F, B, T, A and H in different colours">
+          </a>
+          <figcaption>F, B, T, A, H – one colour each</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section>
+      <h2>Media</h2>
+      <div class="grid grid-2">
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-3/apples-added.png" data-caption="Apples under the trees.">
+            <img src="../media/sprint-3/apples-added.png" width="803" height="521" loading="lazy" alt="Player near a tree with a prompt: Pick up Apple x2">
+          </a>
+          <figcaption>Apples under the trees</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-3/apple-cook-menu.gif" data-caption="Cooking an apple from the campfire menu.">
+            <img src="../media/sprint-3/apple-cook-menu.gif" width="1274" height="700" loading="lazy" alt="Animation: the player opens the campfire menu and cooks an apple">
+          </a>
+          <figcaption>Cooking an apple at the campfire</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-3/menu-in-game.png" data-caption="Pause menu: Resume, Settings, Main Menu, Quit.">
+            <img src="../media/sprint-3/menu-in-game.png" width="1278" height="718" loading="lazy" alt="Pause menu over the game: Resume, Settings, Main Menu, Quit">
+          </a>
+          <figcaption>Pause menu (Esc)</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-3/settings-added.png" data-caption="Settings: brightness, volume, fullscreen and the list of controls.">
+            <img src="../media/sprint-3/settings-added.png" width="1271" height="714" loading="lazy" alt="Settings screen with brightness and volume sliders, fullscreen switch and a list of controls">
+          </a>
+          <figcaption>Settings</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <p>Sprint 4 is about the trail:</p>
+      <ul>
+        <li>Two trail sections</li>
+        <li>Hazards and wildlife</li>
+        <li>From the backlog: key rebinding, sound, a pixel font</li>
+      </ul>
+      <p><a href="../roadmap.html">See the roadmap →</a></p>
+    </section>
+
+    <nav class="post-nav" aria-label="Posts">
+      <a href="2026-10-28-sprint-2.html">← Sprint 2 – Light as a resource</a>
+      <a href="../devlog.html">All posts →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Night Trail devlog · Volodymyr Cherepovskyi · Kingston University 2026</span>
+      <a href="https://github.com/vokamne">GitHub</a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
