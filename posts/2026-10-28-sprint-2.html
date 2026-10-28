@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprint 2 – Light as a resource — Night Trail</title>
+  <meta name="description" content="Sprint 2 review: firewood, torches, batteries, a warmth meter, balance tests and the first playtest.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span>Night Trail</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../game.html">The Game</a></li>
+          <li><a href="../devlog.html" aria-current="page">Devlog</a></li>
+          <li><a href="../design.html">Design</a></li>
+          <li><a href="../roadmap.html">Roadmap</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Source text: content/posts/2026-10-28-sprint-2.md -->
+  <main id="main" class="narrow post">
+    <header class="post-head">
+      <a class="back" href="../devlog.html">← All posts</a>
+      <h1>Sprint 2 – Light as a resource</h1>
+      <div class="meta"><span class="tag tag-sprint">Sprint review</span><time datetime="2026-10-28">28 Oct 2026</time></div>
+      <p class="goal"><strong>Goal:</strong> make it possible to survive or lose the night.</p>
+    </header>
+
+    <section>
+      <h2>What I did</h2>
+      <ul class="checklist">
+        <li>Pick up items with E: firewood, batteries, torches</li>
+        <li>Items placed around the map</li>
+        <li>Campfire burns fuel: big fire → small fire → embers → out</li>
+        <li>Add firewood to keep the fire going</li>
+        <li>Warmth meter: you get cold at night, warm up by the fire</li>
+        <li>Torch (Q): lasts about a minute, gives light and some warmth</li>
+        <li>Battery (R) recharges the headlamp</li>
+        <li>If warmth hits zero, you pass out and wake up at the last campfire, losing half your items</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Problems &amp; solutions</h2>
+
+      <article class="card problem">
+        <h3>Fuel burned in real time, but the day used game time</h3>
+        <p><span class="label label-p">Problem</span><br>Testing and balance didn't match.</p>
+        <p><span class="label label-s">Solution</span><br>Now everything uses game time.</p>
+      </article>
+
+      <article class="card problem">
+        <h3>You could survive the night with just the headlamp</h3>
+        <p><span class="label label-p">Problem</span><br>Campfires didn't matter.</p>
+        <p><span class="label label-s">Solution</span><br>Now only fire gives warmth, the headlamp only gives light.</p>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-2/warmth-added.png" data-caption="The new warmth meter goes up near the campfires.">
+            <img src="../media/sprint-2/warmth-added.png" width="1275" height="711" loading="lazy" alt="Daytime scene with two campfires and a warmth meter in the HUD showing plus 20 per hour">
+          </a>
+          <figcaption>The warmth meter in the HUD: it only goes up near fire</figcaption>
+        </figure>
+      </article>
+
+      <article class="card problem">
+        <h3>Headlamp + torch made the player look blown out</h3>
+        <p><span class="label label-p">Problem</span><br>Lights add up, so with both on the player turned into a bright blob.</p>
+        <p><span class="label label-s">Solution</span><br>Now the headlamp glow fades out while the torch is lit.</p>
+        <div class="compare">
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-2/torch-overexposed.png" data-caption="Before: headlamp and torch light stack up and the player is blown out.">
+              <img src="../media/sprint-2/torch-overexposed.png" width="1273" height="714" loading="lazy" alt="Before: player holding a torch with the headlamp on, the light around them is overexposed">
+            </a>
+            <figcaption><span class="state before">Before</span>Lights stack up</figcaption>
+          </figure>
+          <figure class="figure">
+            <a class="zoom" href="../media/sprint-2/torch-fixed.png" data-caption="After: the headlamp glow fades while the torch is lit.">
+              <img src="../media/sprint-2/torch-fixed.png" width="440" height="282" loading="lazy" alt="After: player with a torch, soft warm light without overexposure">
+            </a>
+            <figcaption><span class="state after">After</span>Soft torch light</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="card problem">
+        <h3>Items were too easy to see at night</h3>
+        <p><span class="label label-p">Problem</span><br>You could spot every item in the dark, so light didn't matter for finding them.</p>
+        <p><span class="label label-s">Solution</span><br>I made their colours dimmer, so you need light to find them.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Balance check</h2>
+      <p>Three ways to spend the night:</p>
+      <ul class="results">
+        <li><strong>By the campfire</strong>Survived the night, used 7 firewood.</li>
+        <li><strong>Torches only</strong>Ran out of warmth 35 minutes before dawn.</li>
+        <li><strong>No light</strong>Passed out at 3:30, woke up at the campfire.</li>
+      </ul>
+      <figure class="figure">
+        <a class="zoom" href="../media/sprint-2/passed-out-added.png" data-caption="Waking up at the campfire after passing out, with half the items lost.">
+          <img src="../media/sprint-2/passed-out-added.png" width="1280" height="707" loading="lazy" alt="Message on screen: You passed out. Lost: 4 firewood, 1 battery, 1 torch">
+        </a>
+        <figcaption>Soft failure: you wake up at the last campfire and lose half your items</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Playtest</h2>
+      <p>I gave the game to a friend without explaining anything except the controls.</p>
+      <ul>
+        <li>Controls felt clear and comfortable, and he understood the goal by himself.</li>
+        <li>He asked if you can get hurt by the fire. There's no health, so instead the fire will be solid and you can't walk into it.</li>
+        <li>He suggested food. Food will give warmth (and more if cooked at the fire) instead of adding health.</li>
+        <li>He asked if you can sleep. Sleeping through the night would remove the challenge, so resting will only be possible at a burning campfire, and the fire keeps using fuel while you sleep.</li>
+        <li>He suggested different biomes and snow higher up. This matches the plan (forest → ridge → pass), and I'll add "higher = colder".</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Media</h2>
+      <p>The campfire burning down, step by step:</p>
+      <div class="sequence">
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-2/fire-state-1.png" data-caption="1. Big fire">
+            <img src="../media/sprint-2/fire-state-1.png" width="176" height="165" loading="lazy" alt="Campfire stage 1: big fire">
+          </a>
+          <figcaption>Big fire</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-2/fire-state-2.png" data-caption="2. Small fire">
+            <img src="../media/sprint-2/fire-state-2.png" width="163" height="184" loading="lazy" alt="Campfire stage 2: small fire">
+          </a>
+          <figcaption>Small fire</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-2/fire-state-3.png" data-caption="3. Embers">
+            <img src="../media/sprint-2/fire-state-3.png" width="199" height="160" loading="lazy" alt="Campfire stage 3: glowing embers">
+          </a>
+          <figcaption>Embers</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="zoom" href="../media/sprint-2/fire-state-4.png" data-caption="4. Out">
+            <img src="../media/sprint-2/fire-state-4.png" width="189" height="149" loading="lazy" alt="Campfire stage 4: the fire is out and it is dark">
+          </a>
+          <figcaption>Out</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <p>Sprint 3 is about resources and campsites:</p>
+      <ul>
+        <li>Campsites as save points</li>
+        <li>Firewood that grows back each day</li>
+        <li>Main menu and pause</li>
+        <li>Solid campfire</li>
+      </ul>
+      <p><a href="../roadmap.html">See the roadmap →</a></p>
+    </section>
+
+    <nav class="post-nav" aria-label="Posts">
+      <a href="2026-10-27-sprint-1.html">← Sprint 1 – Lighting prototype</a>
+      <a href="../devlog.html">All posts →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Night Trail devlog · Volodymyr Cherepovskyi · Kingston University 2026</span>
+      <a href="https://github.com/vokamne">GitHub</a>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+wood-for-campfire-added.png – first pickup: firewood near the campfire, press E to collect.
+Problem: Godot couldn't find the new ItemData type at first. Solution: refresh the class cache.
+
+
+battery-tourch-added.png - Items placed: firewood under trees, batteries in open areas, torches by rocks. Second campfire added to test “last visited campfire”.
+Problem: items were too visible at night. Soluti  on: dimmer colours so you need light to find them
+
+fire-state-1/2/3/4 - Campfire now burns fuel in 4 stages (big → small → embers → out); add firewood with E. Problem: fuel burned in real time while the day/night cycle used game time, so testing and balance didn’t match. Solution: all resources now use game time
+
+warmth-added.png - Problem: you could survive the whole night with just the headlamp, so campfires didn’t matter. Solution: only fire (campfire and torch) gives warmth; the headlamp only gives light
+
+torch-added.png / torch-overexposed.png / torch-fixed.png - Problem: with the headlamp and torch on together, the light stacked up and the player looked blown out. Solution: the headlamp’s glow around the player fades out while the torch is lit; the beam stays.
